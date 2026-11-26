@@ -46,7 +46,7 @@ export default function HeroSection() {
   }, { scope: rootRef });
 
   return (
-    <section ref={rootRef} className="relative h-dvh overflow-hidden">
+    <section ref={rootRef} className="film-flicker relative h-dvh overflow-hidden">
       <p
         data-hero-side
         style={textureStyle}

@@ -34,3 +34,112 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
 }
+
+@utility film-flicker {
+  animation: film-flicker 0.24s steps(1, end) infinite;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: -100%;
+  z-index: 50;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3 0 0 0 -1.6'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  background-size: 240px 240px;
+  opacity: 0.35;
+  animation: film-grain 0.5s steps(5, end) infinite;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 23%;
+  width: 1px;
+  z-index: 50;
+  pointer-events: none;
+  background-color: rgb(17 17 17 / 0.18);
+  opacity: 0;
+  animation: film-scratch 7s steps(1, end) infinite;
+}
+
+@keyframes film-grain {
+  0% {
+    transform: translate(0, 0);
+  }
+  20% {
+    transform: translate(-7%, 4%);
+  }
+  40% {
+    transform: translate(5%, -9%);
+  }
+  60% {
+    transform: translate(-3%, 8%);
+  }
+  80% {
+    transform: translate(9%, -2%);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes film-flicker {
+  0% {
+    opacity: 1;
+  }
+  33% {
+    opacity: 0.94;
+  }
+  66% {
+    opacity: 0.98;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes film-scratch {
+  0% {
+    opacity: 0;
+    left: 23%;
+  }
+  12% {
+    opacity: 1;
+    left: 23%;
+  }
+  14% {
+    opacity: 0;
+    left: 71%;
+  }
+  47% {
+    opacity: 1;
+    left: 71%;
+  }
+  50% {
+    opacity: 0;
+    left: 38%;
+  }
+  78% {
+    opacity: 1;
+    left: 38%;
+  }
+  79% {
+    opacity: 0;
+    left: 23%;
+  }
+  100% {
+    opacity: 0;
+    left: 23%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::after,
+  body::before,
+  .film-flicker {
+    animation: none;
+  }
+}
