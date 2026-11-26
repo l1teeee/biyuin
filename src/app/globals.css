@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #fafafa;
+  --color-sumi: #141414;
+  --font-sans: var(--font-noto-sans-jp), "Hiragino Sans", "Yu Gothic", sans-serif;
+}
+
+@utility vertical-text {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+}
+
+@utility texture-text {
+  color: transparent;
+  background-color: var(--color-sumi);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--color-paper);
+}
+
+body {
+  margin: 0;
+  color: var(--color-sumi);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
